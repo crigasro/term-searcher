@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,9 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchBarComponent implements OnInit {
   
+  @Input() title: string = '';
   @Output() onSearch = new EventEmitter<string>();
+  
   search = new FormControl('');
 
   constructor() { }
