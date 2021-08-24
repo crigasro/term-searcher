@@ -1,3 +1,3 @@
 <div class="content">
-  <app-search-bar (onSearch)="handleSearch($event)"></app-search-bar>
+  <app-search-bar title="Search term" (onSearch)="searchNotifier.next($event)"></app-search-bar>
 </div>
