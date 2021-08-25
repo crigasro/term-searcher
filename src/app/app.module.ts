@@ -14,7 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button'; 
+import { MatButtonModule } from '@angular/material/button';
+import { TermComponent } from './pages/term/term.component'; 
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     AppComponent,
     HomeComponent,
     SearchBarComponent,
-    AlertComponent
+    AlertComponent,
+    TermComponent
   ],
   imports: [
     BrowserModule,
