@@ -1,3 +1,5 @@
+import { AlertService } from './../../services/alert.service';
+import { TermItem } from './../../models/term-item';
 import { TermHelperService } from './../../services/term-helper.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -11,9 +13,11 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 export class HomeComponent implements OnInit, OnDestroy {
 
   searchNotifier = new Subject<string>();
+  resultItems: TermItem[] = [];
 
   constructor(
-    private termHelper: TermHelperService
+    private termHelper: TermHelperService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   searchItems(input: string) {
     if (!input) {
+      this.resultItems = [];
       return;
     }
     this.termHelper.getSearchedResults(input)
@@ -35,11 +40,23 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe(
         res => {
           console.log(res.totalItems);
+          this.resultItems = res.items;
         },
         err => {
-          console.log(err);
+          this.showErrorAlert();
         }
       );
+  }
+
+  onSelectItem(item: TermItem) {
+    console.log(item);
+  }
+
+  showErrorAlert() {
+    this.alertService.showCustomAlert(
+      'An error ocurred while requesting. Try again',
+      'Accept'
+    );
   }
 
 }

@@ -1,3 +1,9 @@
 <div class="content">
   <app-search-bar title="Search term" (onSearch)="searchNotifier.next($event)"></app-search-bar>
+
+  <mat-selection-list [multiple]="false">
+    <mat-list-option *ngFor="let item of resultItems" (click)="onSelectItem(item)">
+      <h2>{{ item.title }}</h2>
+    </mat-list-option>
+  </mat-selection-list>
 </div>
