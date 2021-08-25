@@ -1,14 +1,51 @@
-<mat-toolbar>
+<mat-toolbar color="primary">
   <button mat-icon-button aria-label="Back to home" (click)="onNavBack()">
     <mat-icon>arrow_back</mat-icon>
   </button>
-  <span>My Application</span>
+  <span>Term searcher</span>
 </mat-toolbar>
 
-<div class="content">
-  <h2>Essay</h2>
-  <div *ngFor="let e of term?.essay">
-    <div [innerHtml]="e"></div>
-  </div>
-  <div *ngIf="term?.essay?.length == 0">No essay found.</div>
+<div class="content" *ngIf="term">
+  <h2>{{ term.title }}</h2>
+
+  <mat-accordion *ngIf="term">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h4>General information</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+          <ul>
+            <li>City: {{ term.city[0] }}</li>
+            <li>Country: {{ term.country }}</li>
+          </ul>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <ul>
+            <li>Publisher: {{ term.publisher }}</li>
+            <li>Place of publication: {{ term.place_of_publication }}</li>
+          </ul>
+        </mat-grid-tile>
+      </mat-grid-list>      
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h4>Essay</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div *ngFor="let e of term?.essay">
+        <div [innerHtml]="e"></div>
+      </div>
+      <div *ngIf="term?.essay?.length == 0">
+        No data found
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

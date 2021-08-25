@@ -19,7 +19,6 @@ export class TermComponent implements OnInit {
 
   ngOnInit(): void {
     this.term = window.history.state.termItem;
-
     if (!this.term) {
       const diagRef = this.alertService.showCustomAlert('No term was found.', 'Ok');
       diagRef.afterClosed().subscribe(() => this.onNavBack());
