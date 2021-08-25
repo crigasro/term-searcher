@@ -1,1 +1,14 @@
-<p>term works!</p>
+<mat-toolbar>
+  <button mat-icon-button aria-label="Back to home" (click)="onNavBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>My Application</span>
+</mat-toolbar>
+
+<div class="content">
+  <h2>Essay</h2>
+  <div *ngFor="let e of term?.essay">
+    <div [innerHtml]="e"></div>
+  </div>
+  <div *ngIf="term?.essay?.length == 0">No essay found.</div>
+</div>

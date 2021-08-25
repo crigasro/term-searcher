@@ -12,7 +12,7 @@ export class AlertService {
   ) { }
 
   showCustomAlert(message: string, buttonText: string) {
-    this.matDialog.open(AlertComponent, {
+    return this.matDialog.open(AlertComponent, {
       width: '390px',
       height: '160px',
       data: {
