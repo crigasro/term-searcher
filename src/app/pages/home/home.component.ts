@@ -4,6 +4,7 @@ import { TermHelperService } from './../../services/term-helper.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private termHelper: TermHelperService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,14 +50,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       );
   }
 
-  onSelectItem(item: TermItem) {
-    console.log(item);
+  onSelectItem(termItem: TermItem) {
+    this.router.navigate(['/term'], { state: { termItem } });
   }
 
   showErrorAlert() {
     this.alertService.showCustomAlert(
       'An error ocurred while requesting. Try again',
-      'Accept'
+      'Ok'
     );
   }
 
